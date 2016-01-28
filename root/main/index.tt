@@ -1,7 +1,7 @@
 [% WRAPPER "layout.tt" title=l("MusicBrainz - The Open Music Encyclopedia") homepage=1 %]
     <div id="maincontent">
         <div id="content">
-            <h1>[% l('Welcome to MusicBrainz!') %]</h1>
+            <img src="[% c.uri_for("/static/images/logos/musicbrainz.svg") %]"><h1>[% l('Welcome to MusicBrainz!') %]</h1>
             <p>
                 [% l('MusicBrainz is an open music encyclopedia that collects music metadata and makes it available to the public.') %]
             </p>
