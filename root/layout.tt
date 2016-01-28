@@ -1,26 +1,27 @@
 [% set_header() %]
     [%- DEFAULT no_icons = homepage -%]
     [%- INCLUDE 'layout/head.tt' no_icons=no_icons -%]
-    <body>
+    <body class="MusicBrainz">
         [%- IF c.debug -%][%- INCLUDE 'debug/stats.tt' -%][%- END ~%]
-
-        <div id="header">
-            <div id="header-logo">
-                <a href="/" class="logo" title="MusicBrainz"><strong>MusicBrainz</strong></a>
-                <div>
-                    [% USE sidebar = FormRenderer(sidebar_search, id_prefix => 'header') ~%]
-                    <form action="[% c.uri_for('/search') %]" method="get">
-                        [% sidebar.text('query', { placeholder => l('search') }) %]
-                        [% sidebar.select('type') %]
-                        [% sidebar.hidden('method', { value => 'indexed' }) %]
-                        [% form_submit(l('Search'), 'inline') %]
-                    </form>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header pull-left">
+                    <a class="navbar-brand logo" href="/">
+                        <img class="extrasmall logo" src="[% c.uri_for("/static/images/logos/MusicBrainz_logo_web_extrasmall.png") %]" alt="MusicBrainz">
+                    </a>
+                </div>
+                <div class="navbar-header non-collapse">
+                  [%- INCLUDE "layout/menu.tt" -%]
                 </div>
             </div>
-            <div id="header-menu">
-                <div>
-                    [%- INCLUDE "layout/menu.tt" -%]
-                </div>
+            <div class="navbar-right">
+                [% USE sidebar = FormRenderer(sidebar_search, id_prefix => 'header') ~%]
+                <form class="form-inline header-form" action="[% c.uri_for('/search') %]" method="get">
+                    [% sidebar.text('query', { placeholder => l('search') }) %]
+                    [% sidebar.select('type') %]
+                    [% sidebar.hidden('method', { value => 'indexed' }) %]
+                    [% form_submit(l('Search'), '') %]
+                </form>
             </div>
         </div>
 
@@ -106,6 +107,7 @@
            IF c.try_get_session('merger') AND !hide_merge_helper -%]
 
         <div id="footer">
+            <hr>
             <p class="left">
                 <a href="https://metabrainz.org/donate" class="internal">[% l('Donate') %]</a> |
                 <a href="//wiki.musicbrainz.org/" class="internal">[% l('Wiki') %]</a> |
