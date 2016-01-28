@@ -1,0 +1,157 @@
+// This file serves as a patch to adapt the current MusicBrainz website to the lobes Bootstrap 3 theme
+// Yes, it's hacky.
+
+// @import (less) "styles/lobes-theme/bootstrap.css";
+@import  "styles/lobes-theme/theme.less";
+
+// Bullet point styles override
+ul.links{
+	list-style-image:none;
+	&:extend(ul.hexagonBullet);
+	li:before{
+		&:extend(ul.hexagonBullet li:before);
+	}
+}
+#sidebar ul.links{
+	padding-left: 0;
+}
+
+#triple {
+	.feature-column{
+		// &:extend(.col-md-4 all);
+		display: inline-block;
+		padding: 0;
+	    margin-left: 20px;
+		&:first-child {
+		    margin-left: 0;
+		}
+	}
+}
+.feature-column{
+
+	&:extend(.panel all);
+	&:extend(.panel-default all);
+	// .panel;
+	// .panel-default;
+	> h2{
+		&:extend(.panel .panel-heading all);
+		&:extend(.panel-default > .panel-heading all);
+		&:extend(.panel-heading all);
+		// .panel-heading;
+	}
+	> p{
+		&:extend(.panel .panel-body all); 
+	}
+}
+.form-inline{
+	input,select{
+		&:extend(.form-control);
+	    display: inline-block;
+    	width: auto;
+	}
+}
+.buttons button,.buttons button[type], button{
+	&:extend(.btn all);
+	&:extend(.btn-default all);
+}
+.navbar {
+	.navbar-brand.logo{
+	    padding-right: 10px;
+	    padding-left: 10px;
+	}
+	.container{
+		max-width: 100%;
+		// padding: 0;
+	    font-size: 0.8em;
+	    > .navbar-header {
+	    	margin: 0;
+	    }
+		> .navbar-collapse{
+			width: 80%;
+			margin:0;
+		}
+		.non-collapse{
+			// Until this header gets properly adapted:
+			width: 80%;
+			margin:0;
+			float: right;
+			padding: 14px 0 0;
+			border-bottom: 2px solid #ba478f;
+		    border-color: #ba478f;
+		    .navbar-nav{
+	    	    float: left;
+    			margin: 0;
+		    	>li{
+    		    	float: left;
+    		    }
+    		}
+		}
+		ul.nav li{
+			a{
+				padding: 7px 9px;
+			}
+			// Show submenus on hover rather than click
+		  	&.dropdown:hover > ul.dropdown-menu {
+  		    	display: block;
+  		    }
+  		    // Rather than editing the link_entity macro for the user name/avatar element:
+			&.dropdown.account > a:first-child{
+				&:extend(.dropdown-toggle);
+				&:after{
+					content:"  ";
+					&:extend(.caret);
+				}
+			}
+  		}
+	}
+	.header-form{
+	    margin-right: 50px;
+	    >.buttons>button{
+	    	position: relative;
+	    	top:0.65em;
+	    }
+	}
+}
+div.tabs {
+    font-size: inherit;
+	ul{
+		&:extend(.nav.nav-tabs all);
+		>li{
+			&:extend(.nav-tabs>li all);
+			> a{
+				background: inherit;
+    			&:extend(a all);
+				&:extend(.nav>li>a all);
+				&:extend(.nav-tabs>li>a all);
+			}
+			&.sel{
+				&:extend(.active all);
+				> a{
+					&:extend(.nav-tabs>li.active>a all);
+				}
+			}
+		}
+	}
+}
+
+.banner{
+	&:extend(.alert);
+	&.server-details{
+		&:extend(.alert-warning);
+	}
+	.dismiss-banner {
+	    top: 0.9em;
+	    right: 1em;
+	}
+}
+
+.releaseheader{
+	h1,h2,h3,h4,h5,h6{
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+#sidebar ul.external_links li{
+	background-position: 0; // Fix for shaved icons
+}

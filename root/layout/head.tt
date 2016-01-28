@@ -9,6 +9,7 @@
         <link rel="canonical" href="[% Canonicalize.canonicalize(canonical_url || c.req.uri) | html %]" />
     [%~ END ~%]
     [% css_manifest('common.css') %]
+    [% css_manifest('lobes.css') %]
     [% css_manifest('icons.css') UNLESS no_icons %]
     [%- IF c.debug -%]
         <link rel="stylesheet" type="text/css" href="/static/styles/debug.css" />
